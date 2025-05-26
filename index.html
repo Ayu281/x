@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Al Muhibbin - Grup Hadroh</title>
+  <style>
+    /* RESET dan DASAR FONT */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #d7f3e3, #f0fff7);
+      color: #2a3a1a;
+      padding: 20px;
+      perspective: 1000px; /* untuk efek 3D */
+    }
+    /* CONTAINER UTAMA */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffffdd; /* putih transparan */
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow:
+        0 10px 20px rgba(0,0,0,0.15), /* shadow luar */
+        inset 0 0 30px #a1c497;       /* shadow dalam hijau */
+      transform-style: preserve-3d;
+      transform: translateZ(0);
+    }
+    /* HEADER NAMA GRUP */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #235823;
+      text-shadow: 1px 1px 3px #a1c497;
+      transform: translateZ(20px);
+    }
+    /* MAIN-CONTENT: Bagian logo NU, foto Mbah Hasyim dan artikel */
+    .main-content, .bottom-content {
+      display: flex;
+      gap: 30px; /* jarak antar kolom */
+      flex-wrap: wrap; /* responsif */
+    }
+    /* LEFT PANEL: logo NU dan foto Mbah Hasyim */
+    .left-panel {
+      flex: 1 1 320px; /* lebar minimal 320px */
+      background: #e6f2e6;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(34, 78, 12, 0.3);
+      transform: translateZ(10px);
+    }
+    .left-panel img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(34, 78, 12, 0.4);
+      margin-bottom: 20px;
+      object-fit: contain;
+      background: white;
+      padding: 10px;
+    }
+    .logo-nu {
+      width: 100px;
+      margin-bottom: 15px;
+      filter: drop-shadow(1px 1px 2px #558b2f);
+    }
+    /* ARTICLE: teks artikel tentang cinta nabi */
+    .article {
+      flex: 2 1 600px;
+      background: #f9fef9;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 15px rgba(34, 78, 12, 0.15);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #3a5a2a;
+      transform: translateZ(5px);
+    }
+    .article h2 {
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    /* BOTTOM CONTENT: kotak input link video dan slider foto */
+    .bottom-content {
+      margin-top: 40px;
+    }
+    .box {
+      flex: 1 1 460px;
+      background: #e6f2e6;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(34, 78, 12, 0.3);
+      padding: 20px;
+      transform: translateZ(10px);
+    }
+    /* INPUT LINK VIDEO */
+    #youtubeLink {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid #84a264;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    #youtubeLink:focus {
+      border-color: #4a7c29;
+      box-shadow: 0 0 8px #4a7c29;
+    }
+    /* SLIDER FOTO */
+    .slider {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.8s ease;
+      will-change: transform;
+    }
+    .slides img {
+      width: 100%;
+      border-radius: 15px;
+      flex-shrink: 0;
+      object-fit: cover;
+      box-shadow: 0 6px 15px rgba(34, 78, 12, 0.4);
+    }
+    /* DOTS NAVIGASI SLIDER */
+    .dots {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .dots button {
+      cursor: pointer;
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      background: #84a264;
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 0 6px #4a7c29;
+      transition: background-color 0.3s ease;
+    }
+    .dots button.active {
+      background: #4a7c29;
+    }
+    /* KONTAK WA */
+    .contact {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 1rem;
+      color: #2e5a22;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      transform: translateZ(5px);
+    }
+    .contact img {
+      width: 18px;
+      filter: drop-shadow(1px 1px 0 #1f4d16);
+    }
+    .contact a {
+      color: #2e5a22;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    /* RESPONSIVE */
+    @media(max-width: 720px) {
+      .main-content, .bottom-content {
+        flex-direction: column;
+      }
+      .box, .left-panel, .article {
+        flex: 1 1 100%;
+      }
+      .logo-nu {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER: Nama Grup -->
+    <header>Al Muhibbin</header>
+
+    <!-- BAGIAN UTAMA: Logo NU di kiri atas, Foto Mbah Hasyim kanan bawah -->
+    <div class="main-content">
+      <div class="left-panel">
+        <!-- Logo NU kecil -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Nahdlatul_Ulama.svg/1024px-Flag_of_Nahdlatul_Ulama.svg.png"
+          alt="Logo NU"
+          class="logo-nu"
+        />
+        <!-- Foto Mbah Hasyim As'ari -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/67/Hasjim_Asy%27ari.jpg"
+          alt="Mbah Hasyim As'ari"
+        />
+      </div>
+      <!-- Artikel tentang cinta Nabi -->
+      <article class="article">
+        <h2>Cinta Nabi Muhammad SAW</h2>
+        <p>
+          Cinta kepada Nabi Muhammad SAW adalah cinta yang paling mulia dan hakiki bagi setiap muslim. Melalui cinta ini, kita mendapat petunjuk dalam menjalani kehidupan, mendapat syafaat di hari kiamat, dan menjalin kedekatan dengan Allah SWT.
+        </p>
+        <p>
+          Meneladani akhlak dan sunnah beliau adalah bentuk nyata pengamalan cinta tersebut. Semoga kita selalu istiqomah dalam mencintai dan mengamalkan ajaran Rasulullah SAW.
+        </p>
+      </article>
+    </div>
+
+    <!-- BAGIAN BAWAH: Kotak link video dan slider foto -->
+    <div class="bottom-content">
+      <!-- Kotak input link YouTube video hadroh -->
+      <div class="box video-link">
+        <h3>Masukkan Link Video YouTube Hadroh</h3>
+        <input
+          type="text"
+          id="youtubeLink"
+          placeholder="https://youtube.com/..."
+          aria-label="Link Video YouTube Hadroh"
+        />
+      </div>
+
+      <!-- Kotak slider foto alat hadroh -->
+      <div class="box slider-container">
+        <h3>Foto-foto Alat Hadroh</h3>
+        <div class="slider" id="slider">
+          <div class="slides" id="slides">
+            <!-- Ganti link gambar sesuai koleksi alat hadroh -->
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Frame_drum_Indonesia.jpg"
+              alt="Rebana Hadroh"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Gambus1.jpg"
+              alt="Gambus Hadroh"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Tambourine-01.jpg"
+              alt="Tamburine"
+            />
+          </div>
+        </div>
+        <div class="dots" id="dots" aria-label="Navigasi slider foto alat hadroh"></div>
+      </div>
+    </div>
+
+    <!-- KONTAK WA -->
+    <div class="contact">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        alt="WhatsApp Icon"
+      />
+      <!-- Ganti nomor WA di href dan teks sesuai nomor kamu -->
+      <a href="https://wa.me/628123456789" target="_blank" rel="noopener noreferrer"
+        >+62 812-3456-789 (Edit no WA)</a
+      >
+    </div>
+  </div>
+
+  <script>
+    // SCRIPT SLIDER FOTO ALAT HADROH
+    const slides = document.getElementById('slides');
+    const dotsContainer = document.getElementById('dots');
+    const slideCount = slides.children.length;
+    let currentIndex = 0;
+    let intervalId;
+
+    // Membuat tombol dot untuk navigasi slider sesuai jumlah gambar
+    for (let i = 0; i < slideCount; i++) {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateSlider();
+        resetInterval();
+      });
+      dotsContainer.appendChild(dot);
+    }
+    const dots = dotsContainer.querySelectorAll('button');
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot) => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlider();
+    }
+
+    function resetInterval() {
+      clearInterval(intervalId);
+      intervalId = setInterval(nextSlide, 4000);
+    }
+
+    // Initialize slider dan start interval otomatis
+    updateSlider();
+    intervalId = setInterval(nextSlide, 4000);
+  </script>
+</body>
+</html>
